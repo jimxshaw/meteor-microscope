@@ -1,0 +1,11 @@
+<!--
+It isn't efficient to define one route per post as there could be 
+hundreds of posts or more. Thus, a single dynamic route must 
+be created to display any post we want. This template serves
+as a dynamic route from router.js .
+-->
+<template name="postPage">
+  <div class="post-page page">
+    {{> postItem}}
+  </div>
+</template>
