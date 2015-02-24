@@ -16,7 +16,16 @@ button functionality in the app header.
       </div>
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="nav navbar-nav">
-          <li><a href="{{pathFor 'postSubmit'}}">New</a></li>
+          <!--
+          The easiest way to prevent users from accessing the Submit page by 
+          mistake when they're logged out is to hide the link from them.
+          The currentUser helper is provided by the accounts package and is the
+          Spacebars equivalent of Meteor.user() . Since it's reactive, the link
+          will appear or disappear as users log in or out.
+          -->
+          {{#if currentUser}}
+          <li><a href="{{pathFor 'postSubmit'}}">Submit Post</a></li>
+          {{/if}}
         </ul>
         <ul class="nav navbar-nav navbar-right">
           {{> loginButtons}}
