@@ -1,3 +1,16 @@
+Template.postEdit.created = function() {
+  Session.set('postEditErrors', {});
+}
+
+Template.postEdit.helpers({
+  errorMessage: function(field) {
+    return Session.get('postEditErrors')[field];
+  },
+  errorClass: function (field) {
+    return !!Session.get('postEditErrors')[field] ? 'has-error' : '';
+  }
+});
+
 /*
 There are two template event callbacks: one for the form's
 submit event and one for the delete link's click event.
@@ -26,6 +39,11 @@ Template.postEdit.events({
     var postProperties = {
       url: $(e.target).find('[name=url]').val(),
       title: $(e.target).find('[name=title]').val()
+    }
+
+    var errors = validatePost(postProperties);
+    if (errors.title || errors.url) {
+      return Session.set('postEditErrors', errors);
     }
 
     Posts.update(currentPostId, {$set: postProperties}, function(error) {

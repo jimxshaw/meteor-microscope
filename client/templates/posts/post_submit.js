@@ -34,10 +34,15 @@ form fields and populates a new post object from the result.
 The preventDefault() method has to be attached to the event
 argument to make sure the browser doesn't go and try to submit
 the form.
+
 The Meteor.call function calls a Meteor Method by its first argument. 
 You can provide arguments to the call, such as the post object we 
 constructed from the form, and finally attach a callback, which will 
 execute when the server-side Method is done.
+
+If the user's post has no title or no url during post submission, 
+the validatePost function will display the appropriate message.
+
 Meteor Method callbacks always have two arguments, error and result. 
 If for whatever reason the error argument exists, we'll notify the 
 user by using return to execute the throwError function in 
@@ -53,12 +58,17 @@ Template.postSubmit.events({
       title: $(e.target).find('[name=title]').val()
     };
 
+    var errors = validatePost(post);
+    if (errors.title || errors.url) {
+      return Session.set('postSubmitErrors', errors);
+    }
+
     Meteor.call('postInsert', post, function(error, result) {
       if (error) {
         return throwError(error.reason);
       }
       if (result.postExists) {
-        throwError('This link has already been posted.');
+        throwError('This link has already been posted');
       }
       Router.go('postPage', {
         _id: result._id
