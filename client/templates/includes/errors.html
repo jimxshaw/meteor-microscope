@@ -1,0 +1,29 @@
+<!--
+The following template appears when errors occur. Generally, there are 
+two kinds of errors: App-level & Code-level.
+
+App-level errors are generally triggered by users and users are in turn 
+able to act upon them. Validation errors, permission errors, "not found" 
+errors and so on are a few examples of these. You want to show users 
+this kind of error in order to help them fix the problem they've just 
+encountered.
+
+Code-level errors are actual bugs in your code and you probably don't 
+want to surface them to users directly but instead track them with a 
+third party error-tracking service like Kadira. 
+-->
+
+<template name="errors">
+  <div class="errors">
+    {{#each errors}}
+      {{> error}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="error">
+  <div class="alert alert-danger" role="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{message}}
+  </div>
+</template>
