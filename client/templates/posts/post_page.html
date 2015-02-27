@@ -7,5 +7,10 @@ as a dynamic route from router.js .
 <template name="postPage">
   <div class="post-page page">
     {{> postItem}}
+    <ul class="comments">
+      {{#each comments}}
+        {{> commentItem}}
+      {{/each}}
+    </ul>
   </div>
 </template>
