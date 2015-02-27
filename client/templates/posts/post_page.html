@@ -12,5 +12,10 @@ as a dynamic route from router.js .
         {{> commentItem}}
       {{/each}}
     </ul>
+    {{#if currentUser}}
+      {{> commentSubmit}}
+    {{else}}
+      <p>Please log in to leave a comment</p>
+    {{/if}}
   </div>
 </template>
