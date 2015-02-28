@@ -1,7 +1,20 @@
+<!--
+A load more button appears at the bottom of the app 
+to limit the number of posts that appear and thus will 
+cut page loading time.
+-->
 <template name="postsList">
 	<div class="posts">
 		{{#each posts}}
 			{{> postItem}}
 		{{/each}}
+
+    {{#if nextPath}}
+      <a class="load-more" href="{{nextPath}}">Load more</a>
+    {{else}}
+      {{#unless ready}}
+        {{> spinner}}
+      {{/unless}}
+    {{/if}}
 	</div>
 </template>
