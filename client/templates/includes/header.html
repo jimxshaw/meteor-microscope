@@ -12,10 +12,16 @@ button functionality in the app header.
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{pathFor 'postsList'}}">Microscope</a>
+        <a class="navbar-brand" href="{{pathFor 'home'}}">Microscope</a>
       </div>
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="nav navbar-nav">
+          <li class="{{activeRouteClass 'home' 'newPosts'}}">
+            <a href="{{pathFor 'newPosts'}}">New</a>
+          </li>
+          <li class="{{activeRouteClass 'bestPosts'}}">
+            <a href="{{pathFor 'bestPosts'}}">Best</a>
+          </li>
           <!--
           The easiest way to prevent users from accessing the Submit page by 
           mistake when they're logged out is to hide the link from them.
@@ -24,7 +30,7 @@ button functionality in the app header.
           will appear or disappear as users log in or out.
           -->
           {{#if currentUser}}
-            <li>
+            <li class="{{activeRouteClass 'postSubmit'}}">
               <a href="{{pathFor 'postSubmit'}}">Submit Post</a>
             </li>
             <li class="dropdown">
