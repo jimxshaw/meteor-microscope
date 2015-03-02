@@ -5,9 +5,11 @@ cut page loading time.
 -->
 <template name="postsList">
 	<div class="posts">
+    <div class="wrapper">
 		{{#each posts}}
 			{{> postItem}}
 		{{/each}}
+    </div>
 
     {{#if nextPath}}
       <a class="load-more" href="{{nextPath}}">Load more</a>
