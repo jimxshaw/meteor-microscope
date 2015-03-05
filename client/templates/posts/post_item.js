@@ -4,7 +4,6 @@ upvoted a post then that user won't be able to vote. To reflect
 this in our UI, we use a helper to conditionally add a disabled 
 CSS class to the upvote button.
 */
-
 Template.postItem.helpers({
   ownPost: function() {
     return this.userId === Meteor.userId();
@@ -22,6 +21,9 @@ Template.postItem.helpers({
     else {
       return 'disabled';
     }
+  },
+  postUrl: function() {
+    return this.shortUrl ? this.shortUrl : this.url;
   }
 });
 
