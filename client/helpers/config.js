@@ -6,5 +6,5 @@ a special new collection, which can be accessed at
 Meteor.users.METHOD(); .
 */
 Accounts.ui.config({
-  passwordSignupFields: 'USERNAME_ONLY'
+  passwordSignupFields: 'USERNAME_AND_EMAIL'
 });
